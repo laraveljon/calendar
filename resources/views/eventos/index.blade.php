@@ -47,8 +47,14 @@
         dateClick:function(info){
 
             limpiarFormulario();
-            
+
             $('#txtFecha').val(info.dateStr);
+
+            $("#btnAgregar").prop("disabled", false);
+            $("#btnModificar").prop("disabled", true);
+            $("#btnEliminar").prop("disabled", true);
+
+
             $('#exampleModal').modal();
 
             // console.log(info);
@@ -58,6 +64,10 @@
             // });
         },
         eventClick: function(info){
+            $("#btnAgregar").prop("disabled", true);
+            $("#btnModificar").prop("disabled", false);
+            $("#btnEliminar").prop("disabled", false);
+
             console.log(info);
             console.log(info.event.title);
             console.log(info.event.start);
@@ -75,11 +85,17 @@
 
             mes =(mes <10)?"0"+mes:mes;
             dia =(dia <10)?"0"+dia:dia;
+            
+            hora= info.event.start.getHours();
+            minutos = info.event.start.getMinutes();
+            
+            hora =(hora <10)?"0"+hora:hora;
+            dia =(minutos <10)?"0"+minutos:minutos;
 
-            hora =  (info.event.start.getHours()+":"+ info.event.start.getMinutes());
+            horario =  ( hora+":"+minutos );
 
             $("#txtFecha").val(anio+"-"+mes+"-"+dia);
-            $("#txtHora").val(hora);
+            $("#txtHora").val(horario);
             $("#txtColor").val(info.event.backgroundColor);
 
             $('#txtDescripcion').val(info.event.extendedProps.descripcion);
@@ -152,7 +168,7 @@
 
             
             $("#txtFecha").val("");
-            $("#txtHora").val("");
+            $("#txtHora").val("07:00");
             $("#txtColor").val("");
 
             $('#txtDescripcion').val("");
@@ -186,10 +202,12 @@
           </button>
         </div>
         <div class="modal-body">
-          ID :
-            <input type="text" name="txtID" id="txtID" /><br />
-          Fecha :
-            <input type="text" name="txtFecha" id="txtFecha" /> <br />
+         <div class="d-none">
+            ID :
+             <input type="text" name="txtID" id="txtID" />
+            Fecha :
+             <input type="text" name="txtFecha" id="txtFecha" /> 
+         </div>
 
             <div class="form-row">
                 <div class="form-group col-md-8">
@@ -198,7 +216,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label> Hora :</label>
-                    <input type="text" class="form-control" name="txtHora" id="txtHora" /> 
+                    <input type="time" min="07:00" max="19:00" step="600" class="form-control" name="txtHora" id="txtHora" /> 
                 </div>
                 <div class="form-group col-md-12">
                     <label> Descripcion de la tarea :</label>
@@ -219,7 +237,7 @@
 
             <button id="btnAgregar" class="btb btn-success">Agregar</button>
             <button id="btnModificar" class="btb btn-primary">Modificar</button>
-            <button id="btnEliminar" class="btb btn-danger">Borrar</button>
+            <button id="btnEliminar" class="btb btn-danger">Eliminar</button>
             <button id="btnCancelar" class="btb btn-default" data-dismiss="modal">Cancelar</button>
 
         </div>
