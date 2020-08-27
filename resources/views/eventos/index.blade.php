@@ -90,7 +90,7 @@
             minutos = info.event.start.getMinutes();
             
             hora =(hora <10)?"0"+hora:hora;
-            dia =(minutos <10)?"0"+minutos:minutos;
+            minutos =(minutos <10)?"0"+minutos:minutos;
 
             horario =  ( hora+":"+minutos );
 
@@ -204,7 +204,7 @@
         <div class="modal-body">
          <div class="">
             ID :
-             <input type="text" name="txtID" id="txtID" />
+             <input type="text" name="txtID" id="txtID" readonly />
             Fecha :
              <input type="text" name="txtFecha" id="txtFecha" /> 
          </div>
