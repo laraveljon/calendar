@@ -202,7 +202,7 @@
           </button>
         </div>
         <div class="modal-body">
-         <div class="d-none">
+         <div class="">
             ID :
              <input type="text" name="txtID" id="txtID" />
             Fecha :

@@ -83,7 +83,7 @@ class EventosController extends Controller
     public function update(Request $request, $id)
     {
         //
-
+         //return $id;
         $datosEvento = request()->except(['_token','_method']);
         $respuesta = evento::where('id','=',$id)->update($datosEvento);
 
